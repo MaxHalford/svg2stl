@@ -64,8 +64,6 @@ if __name__ == "__main__":
             shapes.append(shape)
             shape = []
 
-    shapes = shapes[1:]
-
     x_min, y_min = np.vstack(shapes).min(axis=0)
     x_max, y_max = np.vstack(shapes).max(axis=0)
     x_pad = 0.1 * (x_max - x_min)
