@@ -1,4 +1,5 @@
 import argparse
+import pathlib
 from xml.dom import minidom
 
 import gmsh
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert an SVG into an STL.")
     parser.add_argument("svg_path", type=str, help="path towards an SVG file")
     parser.add_argument("--thickness", default=1, type=float)
+    parser.add_argument("--show", dest="show", action="store_true", default=False)
     args = parser.parse_args()
 
     steps = parse_svg_into_steps(args.svg_path)
@@ -147,4 +149,7 @@ if __name__ == "__main__":
     gmsh.model.geo.synchronize()
     gmsh.model.mesh.generate()
 
-    gmsh.fltk.run()
+    gmsh.write(str(pathlib.Path(args.svg_path).with_suffix(".stl")))
+
+    if args.show:
+        gmsh.fltk.run()
