@@ -8,6 +8,8 @@ It outputs an [STL file](https://www.wikiwand.com/en/STL_(file_format)) like thi
 
 ![example.png](example.png)
 
+You can also see an interactive version [here](example.stl).
+
 The resulting solid is a cuboid with holes in it. It essentially adds a third dimension to the SVG file. The purpose of the output STL is to be fed into a 3D printer. The end goal is to make a physical [stencil](https://www.wikiwand.com/en/Stencil) for artistic purposes.
 
 ## Installation
