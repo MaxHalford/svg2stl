@@ -36,10 +36,16 @@ An SVG is a sequence of geometric lines. When these lines are not straight, then
 python svg2stl.py example.svg --definition 12
 ```
 
-You can also show what this looks like in a GUI:
+In addition to saving the result, you can show what the rendered solid looks like in a GUI:
 
 ```sh
 python svg2stl.py example.svg --thickness 4 --show
+```
+
+Some SVGs have bogus instructions at the beginning of their path definition. For instance, the first three steps of `example_bogus.svg` cause the rendering to fail. Skipping them does the trick:
+
+```sh
+python svg2stl.py example_bogus.svg --skip 3 --show
 ```
 
 ## How it works

@@ -21,6 +21,7 @@ if __name__ == "__main__":
     parser.add_argument("svg_path", type=str, help="path towards an SVG file")
     parser.add_argument("--thickness", default=1, type=float)
     parser.add_argument("--definition", default=5, type=int)
+    parser.add_argument("--skip", default=0, type=int)
     parser.add_argument("--show", dest="show", action="store_true", default=False)
     args = parser.parse_args()
 
@@ -31,7 +32,7 @@ if __name__ == "__main__":
     shapes = []
     shape = []
 
-    for step in steps:
+    for step in steps[args.skip :]:
 
         if isinstance(step, Line):
             shape.append([step.start.real, step.start.imag])
