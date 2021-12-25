@@ -18,6 +18,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert an SVG into an STL.")
     parser.add_argument("svg_path", type=str, help="path towards an SVG file")
     parser.add_argument("--thickness", default=1, type=float)
+    parser.add_argument("--definition", default=5, type=int)
     parser.add_argument("--show", dest="show", action="store_true", default=False)
     args = parser.parse_args()
 
@@ -33,36 +34,14 @@ if __name__ == "__main__":
         if isinstance(step, Line):
             shape.append([step.start.real, step.start.imag])
 
-        elif isinstance(step, CubicBezier):
-
-            x0 = step.start.real
-            y0 = step.start.imag
-            x1 = step.control1.real
-            y1 = step.control1.imag
-            x2 = step.control2.real
-            y2 = step.control2.imag
-            x3 = step.end.real
-            y3 = step.end.imag
-
-            t = np.linspace(0, 1, 5, endpoint=False)
-            x = (
-                x0 * (1 - t) ** 3
-                + x1 * (1 - t) ** 2 * 3 * t
-                + x2 * (1 - t) * 3 * t ** 2
-                + x3 * t ** 3
-            )
-            y = (
-                y0 * (1 - t) ** 3
-                + y1 * (1 - t) ** 2 * 3 * t
-                + y2 * (1 - t) * 3 * t ** 2
-                + y3 * t ** 3
-            )
-
-            shape.extend(list(zip(x, y)))
-
         elif isinstance(step, Close):
             shapes.append(shape)
             shape = []
+
+        elif not isinstance(step, Move):
+            for t in np.linspace(0, 1, args.definition, endpoint=False):
+                p = step.point(t)
+                shape.append([p.real, p.imag])
 
     x_min, y_min = np.vstack(shapes).min(axis=0)
     x_max, y_max = np.vstack(shapes).max(axis=0)

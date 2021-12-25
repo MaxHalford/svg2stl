@@ -4,7 +4,7 @@ This repository provides a script which takes as input an SVG such as this one:
 
 ![example.svg](example.svg)
 
-It outputs an [STL file](https://www.wikiwand.com/en/STL_(file_format)) like this one:
+It outputs an [STL file](https://www.wikiwand.com/en/STL_(file_format)) like this:
 
 ![example.png](example.png)
 
@@ -28,10 +28,18 @@ You can generate an STL with the same name as the input file like this:
 python svg2stl.py example.svg --thickness 4
 ```
 
+The thickness is the distance between the solid's bottom and top.
+
+An SVG is a sequence of geometric lines. When these lines are not straight, then points are interpolated along their trajectory. You can choose how many points to interpolate as so:
+
+```py
+python svg2stl.py example.svg --definition 12
+```
+
 You can also show what this looks like in a GUI:
 
 ```py
-python svg2stl.py example.svg --thickness 4 --show
+python svg2stl.py example.svg --show
 ```
 
 ## How it works
