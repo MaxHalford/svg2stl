@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 You can generate an STL with the same name as the input file like this:
 
-```py
+```sh
 python svg2stl.py example.svg --thickness 4
 ```
 
@@ -38,8 +38,8 @@ python svg2stl.py example.svg --definition 12
 
 You can also show what this looks like in a GUI:
 
-```py
-python svg2stl.py example.svg --show
+```sh
+python svg2stl.py example.svg --thickness 4 --show
 ```
 
 ## How it works
