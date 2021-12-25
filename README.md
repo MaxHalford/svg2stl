@@ -32,7 +32,7 @@ The thickness is the distance between the solid's bottom and top.
 
 An SVG is a sequence of geometric lines. When these lines are not straight, then points are interpolated along their trajectory. You can choose how many points to interpolate as so:
 
-```py
+```sh
 python svg2stl.py example.svg --definition 12
 ```
 
