@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 import pathlib
 from xml.dom import minidom
