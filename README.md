@@ -42,10 +42,10 @@ In addition to saving the result, you can show what the rendered solid looks lik
 python svg2stl.py example.svg --thickness 4 --show
 ```
 
-Some SVGs have bogus instructions at the beginning of their path definition. For instance, the first three steps of [example_bogus.svg](example_bogus.svg) cause the rendering to fail. Skipping them does the trick:
+Some SVGs have bogus instructions at the beginning of their path definition. For instance, the first shape of [example_bogus.svg](example_bogus.svg) is bogus and cause the rendering to fail. Skipping it does the trick:
 
 ```sh
-python svg2stl.py example_bogus.svg --skip 3 --show
+python svg2stl.py example_bogus.svg --skip 1
 ```
 
 ## How it works

@@ -32,7 +32,7 @@ if __name__ == "__main__":
     shapes = []
     shape = []
 
-    for step in steps[args.skip :]:
+    for step in steps:
 
         if isinstance(step, Line):
             shape.append([step.start.real, step.start.imag])
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     ceiling_lines = []
     wall_lines = []
 
-    for shape in shapes:
+    for shape in shapes[args.skip :]:
 
         floor_lines.append([])
         floor_points = [factory.addPoint(*shape[0], z_floor)]
